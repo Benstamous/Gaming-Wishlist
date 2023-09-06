@@ -5,14 +5,14 @@ export const fetchGames = createAsyncThunk(
     'games/fetchGames',
     async () => {
         const response = await fetch(baseUrl + 'games');
-        console.log('fetch complete ' + response);
+        console.log('fetch complete ' + response.status + response);
         if (!response.ok) {
             return Promise.reject(
                 'Could not load games, status code: ' + response.status
             );
         }
         const data = await response.json();
-        console.log('Shit complete: ' + data);
+        console.log('Data complete: ' + data);
         return data;
     }
 );
@@ -29,7 +29,7 @@ const gamesSlice = createSlice({
             .addCase(fetchGames.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.errMess = null;
-                state.campsitesArray = action.payload;
+                state.gamesArray = action.payload;
             })
             .addCase(fetchGames.rejected, (state, action) => {
                 state.isLoading = false;

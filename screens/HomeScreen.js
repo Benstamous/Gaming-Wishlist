@@ -5,6 +5,9 @@ import { baseUrl } from "../shared/baseUrl";
 
 const FeaturedItem = (props) => {
     const { item } = props;
+    const releaseDate = (item) => {
+        return new Date(item.releaseDate).toLocaleDateString('en-US');
+    }
 
     if (props.isLoading) {
         return (        
@@ -26,16 +29,22 @@ const FeaturedItem = (props) => {
                 <Card.Image source={{ uri: baseUrl + item.image }}>
                     <View style={{ justifyContent: 'center', flex: 1 }}>
                         <Text style={{
-                            color: 'White',
-                            textAlign: 'center',
-                            fontSize: 20
+                            color: 'white',
+                            textAlign: 'right',
+                            fontSize: 20,
+                            margin: 50
                             }}
                         >
-                            {item.title}
+                            
+                            {item.name}
+                            {'\n'}
+                            {item.note1}
+                            {'\n'}
+                            {item.releaseDate}
+
                         </Text>
                     </View>
                 </Card.Image>
-                <Text style={{ margin: 20 }}>{item.note1}</Text>
             </Card>
         );
     }

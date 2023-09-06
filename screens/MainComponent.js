@@ -1,18 +1,21 @@
 import HomeScreen from "./HomeScreen";
-import { View } from "react-native";
+import { View, Text, Platform } from "react-native";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchGames } from "../features/games/gamesSlice";
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from "@react-navigation/drawer";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Icon } from "react-native-elements";
+import Constants from "expo-constants";
 
 const Drawer = createDrawerNavigator();
 
 const HomeNavigator = () => {
     const Stack = createStackNavigator();
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{headerStyle: { backgroundColor: '#5637DD'}}}
+        >
             <Stack.Screen
                 name= 'Home'
                 component={HomeScreen}
@@ -45,7 +48,14 @@ const Main = () => {
     }, [dispatch]);
 
     return (
-        <View>
+        <View
+            style={{
+                flex: 1,
+                paddingTop:
+                    Platform.OS === 'ios' ? 0 :
+                    Constants.statusBarHeight
+            }}
+        >
             <Drawer.Navigator
                 initialRouteName='Home'
                 drawerContent={CustomDrawerContent}
