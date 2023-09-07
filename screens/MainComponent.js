@@ -1,5 +1,5 @@
 import HomeScreen from "./HomeScreen";
-import { View, Text, Platform } from "react-native";
+import { View, Text, Platform, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchGames } from "../features/games/gamesSlice";
@@ -77,8 +77,27 @@ const Main = () => {
                     }}
                 />
             </Drawer.Navigator>
+            <TouchableOpacity
+                style={styles.test}
+                onPress={() => Alert.alert('Button pressed')}
+            >
+                <Text style={{fontSize: 40, color: 'white'}}>+</Text>
+            </TouchableOpacity>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    test: {
+        marginLeft: 330,
+        marginBottom: 10,
+        height: 60,
+        width: 60,
+        backgroundColor: 'green',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 160,
+    }
+});
 
 export default Main;

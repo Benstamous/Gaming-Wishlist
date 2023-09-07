@@ -5,14 +5,11 @@ import { baseUrl } from "../shared/baseUrl";
 
 const FeaturedItem = (props) => {
     const { item } = props;
-    const releaseDate = (item) => {
-        return new Date(item.releaseDate).toLocaleDateString('en-US');
-    }
 
     if (props.isLoading) {
         return (        
             <View>
-                <Text>Fucking Wait</Text>
+                <Text>Loading</Text>
             </View>
         )
     }
@@ -39,8 +36,6 @@ const FeaturedItem = (props) => {
                             {item.name}
                             {'\n'}
                             {item.note1}
-                            {'\n'}
-                            {item.releaseDate}
 
                         </Text>
                     </View>
